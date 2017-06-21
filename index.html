@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切割动画</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0
+        }
+        html,body{
+            height:100%;
+            transform-style: preserve-3d
+        }
+        .cube-container{
+            width:300px;
+            height:300px;
+            margin:300px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(20deg) rotateX(-10deg) 
+        }
+        .cube-wrapper{
+            width:50px;
+            height:50px;
+            position: absolute;
+            transform-style: preserve-3d;
+            
+        }
+        .cube{
+            width:50px;
+            height:50px;
+            position: absolute;
+/*
+            top:100px;
+            left:200px
+*/
+        }
+        .blue{
+            background: lightblue;
+/*            border:1px solid lightblue;*/
+            transform: translateY(-25px) rotateX(90deg)
+        }
+        .red{
+            background: red;
+/*            border:1px solid red;*/
+            transform: translateX(-25px) rotateY(90deg)
+        }
+        .yellow{
+            background:yellow;
+/*            border:1px solid yellow;*/
+            transform: translateZ(25px) rotateZ(90deg)
+        }
+        .line1_first{
+            left;0;
+            top:0;
+            animation:line1_first 3s infinite;
+        }
+        .line1_second{
+            left:0;
+            top:50px;
+            animation:line1_second 3s infinite;
+        }
+        .line1_third{
+            left:0;
+            top:100px;
+            animation:line1_third 3s infinite;
+        }
+        .line1_right_second1{
+            left:50px;
+            top:0;
+            animation:line1_right_second1 3s infinite;
+        }
+        .line1_right_second2{
+            left:50px;
+            top:50px;
+            animation:line1_right_second2 3s infinite;
+        }
+        
+        .line1_right_second3{
+            left:50px;
+            top:100px;
+            animation:line1_right_second3 3s infinite;
+        }
+        .line1_right_third1{
+            left:100px;
+            top:0;
+            animation:line1_right_third1 3s infinite;
+        }
+        .line1_right_third2{
+            left:100px;
+            top:50px;
+            animation:line1_right_third2 3s infinite;
+        }
+        
+        .line1_right_third3{
+            left:100px;
+            top:100px;
+            animation:line1_right_third3 3s infinite;
+        }
+        .line2_first{
+            left:0;
+            top:0;
+            transform: translateZ(-50px);
+            animation:line2_first 3s infinite;
+        }
+        
+        .line2_second{
+            left:0;
+            top:50px;
+            transform: translateZ(-50px);
+            animation:line2_second 3s infinite;
+        }
+        .line2_third{
+            left:0;
+            top:100px;
+            transform: translateZ(-50px);
+            animation:line2_third 3s infinite;
+        }
+        .line2_right_second1{
+            left:50px;
+            top:0;
+            transform: translateZ(-50px);
+            animation:line2_right_second1 3s infinite;
+        }
+        
+        .line2_right_second2{
+            left:50px;
+            top:50px;
+            transform:translateZ(-50px);
+            animation:line2_right_second2 3s infinite;
+        }
+        .line2_right_second3{
+            left:50px;
+            top:100px;
+            transform:translateZ(-50px);
+            animation:line2_right_second3 3s infinite;
+        }
+        .line2_right_third1{
+            left:100px;
+            top:0;
+            transform: translateZ(-50px);
+            animation:line2_right_third1 3s infinite;
+        }
+        
+        .line2_right_third2{
+            left:100px;
+            top:50px;
+            transform: translateZ(-50px);
+            animation:line2_right_third2 3s infinite;
+        }
+        .line2_right_third3{
+            left:100px;
+            top:100px;
+            transform:translateZ(-50px);
+            animation:line2_right_third3 3s infinite;
+        }
+        .line3_first{
+            left:0;
+            top:0;
+            transform: translateZ(-100px);
+            animation:line3_first 3s infinite;
+        }
+        
+        .line3_second{
+            left:0;
+            top:50px;
+            transform: translateZ(-100px);
+            animation:line3_second 3s infinite;
+        }
+        .line3_third{
+            left:0;
+            top:100px;
+            transform: translateZ(-100px);
+            animation:line3_third 3s infinite;
+        }
+        .line3_right_second1{
+            left:50px;
+            top:0;
+            transform: translateZ(-100px);
+            animation:line3_right_second1 3s infinite;
+        }
+        
+        .line3_right_second2{
+            left:50px;
+            top:50px;
+            transform:translateZ(-100px);
+            animation:line3_right_second2 3s infinite;
+        }
+        .line3_right_second3{
+            left:50px;
+            top:100px;
+            transform:translateZ(-100px);
+            animation:line3_right_second3 3s infinite;
+        }
+        .line3_right_third1{
+            left:100px;
+            top:0;
+            transform: translateZ(-100px);
+            animation:line3_right_third1 3s infinite;
+        }
+        
+        .line3_right_third2{
+            left:100px;
+            top:50px;
+            transform: translateZ(-100px);
+            animation:line3_right_third2 3s infinite;
+        }
+        .line3_right_third3{
+            left:100px;
+            top:100px;
+            transform:translateZ(-100px);
+            animation:line3_right_third3 3s infinite;
+        }
+        
+        @keyframes line1_first{
+           0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(50px) translateY(-50px)}
+            66.4%{transform: translateY(-50px) translateX(-50px)}
+            83%{transform: translateY(-50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line1_second{
+           0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(50px)}
+            66.4%{transform: translateX(-50px)}
+            83%{transform: translateX(0)}
+            100%{}
+        }
+        @keyframes line1_third{
+            0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(50px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(-50px)}
+            83%{transform: translateY(50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_second1{
+            0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateX(0) translateZ(50px)}
+            49.8%{transform: translateX(0) translateZ(50px) translateY(-50px)}
+            66.4%{transform: translateX(0) translateY(-50px)}
+            83%{transform: translateY(-50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_second2{
+            0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateX(0) translateZ(50px)}
+            49.8%{transform: translateX(0) translateZ(50px)}
+            66.4%{transform: translateX(0)}
+            83%{transform: translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_second3{
+            0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateX(0) translateZ(50px)}
+            49.8%{transform: translateZ(50px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(0)}
+            83%{transform: translateY(50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_third1{
+           0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(50px)}
+            49.8%{transform: translateZ(50px) translateX(50px) translateY(-50px)}
+            66.4%{transform: translateY(-50px) translateX(50px)}
+            83%{transform: translateY(-50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_third2{
+           0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(50px)}
+            49.8%{transform: translateX(50px) translateZ(50px)}
+            66.4%{transform: translateX(50px)}
+            83%{transform: translateX(0)}
+            100%{}
+        }
+        @keyframes line1_right_third3{
+           0%{}
+            16.6%{transform: translateZ(50px)}
+            33.2%{transform: translateZ(50px) translateX(50px)}
+            49.8%{transform: translateZ(50px) translateX(50px)  translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(50px)}
+            83%{transform: translateY(50px) translateX(0)}
+            100%{}
+        }
+        @keyframes line2_first{
+           0%{transform:translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-50px) translateY(-50px)}
+            66.4%{transform: translateX(-50px) translateZ(-50px) translateY(-50px)}
+            83%{transform: translateY(-50px) translateZ(-50px)}
+            100%{}
+        }
+        @keyframes line2_second{
+           0%{transform:translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-50px)}
+            66.4%{transform: translateX(-50px) translateZ(-50px)}
+            83%{transform: translateX(0) translateZ(-50px)}
+            100%{}
+        }
+        @keyframes line2_third{
+            0%{transform:translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-50px) translateY(50px)}
+            66.4%{transform: translateX(-50px) translateZ(-50px) translateY(50px)}
+            83%{transform: translateY(50px)  translateZ(-50px)}
+            100%{}
+        }
+        @keyframes line2_right_second1{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px)}
+            49.8%{transform: translateZ(-50px) translateY(-50px)}
+            66.4%{transform: translateZ(-50px) translateY(-50px)}
+            83%{transform: translateY(-50px) translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line2_right_second2{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px)}
+            49.8%{transform: translateZ(-50px)}
+            66.4%{transform: translateZ(-50px)}
+            83%{transform: translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line2_right_second3{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px)}
+            49.8%{transform: translateZ(-50px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateZ(-50px)}
+            83%{transform: translateY(50px) translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line2_right_third1{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px) translateX(50px)}
+            49.8%{transform: translateZ(-50px) translateX(50px) translateY(-50px)}
+            66.4%{transform: translateZ(-50px) translateX(50px)  translateY(-50px)}
+            83%{transform: translateY(-50px) translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line2_right_third2{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateZ(-50px) translateX(50px)}
+            49.8%{transform: translateZ(-50px) translateX(50px)}
+            66.4%{transform: translateZ(-50px) translateX(50px)}
+            83%{transform: translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line2_right_third3{
+            0%{transform: translateZ(-50px)}
+            16.6%{transform: translateZ(-50px)}
+            33.2%{transform: translateX(50px) translateZ(-50px)}
+            49.8%{transform: translateZ(-50px) translateX(50px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(50px) translateZ(-50px)}
+            83%{transform: translateY(50px) translateZ(-50px)}
+            100%{transform: translateZ(-50px)}
+        }
+        @keyframes line3_first{
+           0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-150px) translateY(-50px)}
+            66.4%{transform: translateY(-50px) translateX(-50px) translateZ(-100px)}
+            83%{transform: translateY(-50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_second{
+           0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-150px)}
+            66.4%{transform: translateX(-50px) translateZ(-100px)}
+            83%{transform: translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_third{
+            0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(-50px)}
+            49.8%{transform: translateX(-50px) translateZ(-150px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(-50px) translateZ(-100px)}
+            83%{transform: translateY(50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_second1{
+            0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateX(0) translateZ(-150px)}
+            49.8%{transform: translateX(0) translateZ(-150px) translateY(-50px)}
+            66.4%{transform: translateX(0) translateY(-50px) translateZ(-100px)}
+            83%{transform: translateY(-50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_second2{
+            0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateX(0) translateZ(-150px)}
+            49.8%{transform: translateX(0) translateZ(-150px)}
+            66.4%{transform: translateX(0) translateZ(-100px)}
+            83%{transform: translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_second3{
+            0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateX(0) translateZ(-150px)}
+            49.8%{transform: translateZ(-150px) translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(0) translateZ(-100px)}
+            83%{transform: translateY(50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_third1{
+           0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(50px)}
+            49.8%{transform: translateZ(-150px) translateX(50px) translateY(-50px)}
+            66.4%{transform: translateY(-50px) translateX(50px) translateZ(-100px)}
+            83%{transform: translateY(-50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_third2{
+           0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(50px)}
+            49.8%{transform: translateX(50px) translateZ(-150px)}
+            66.4%{transform: translateX(50px) translateZ(-100px)}
+            83%{transform: translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+        @keyframes line3_right_third3{
+           0%{transform: translateZ(-100px)}
+            16.6%{transform: translateZ(-150px)}
+            33.2%{transform: translateZ(-150px) translateX(50px)}
+            49.8%{transform: translateZ(-150px) translateX(50px)  translateY(50px)}
+            66.4%{transform: translateY(50px) translateX(50px) translateZ(-100px)}
+            83%{transform: translateY(50px) translateX(0) translateZ(-100px)}
+            100%{transform: translateZ(-100px)}
+        }
+    </style>
+</head>
+<body>    
+   <div class="cube-container">
+    <div class="cube-wrapper line1_first">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_second">
+        <div class="cube blue"></div>
+        <div class="cube red "></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_third">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_right_second1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_right_second2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_right_second3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_right_third1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line1_right_third2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    
+    <div class="cube-wrapper line1_right_third3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_first">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_second">
+        <div class="cube blue"></div>
+        <div class="cube red "></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_third">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_second1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_second2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_second3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_third1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_third2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line2_right_third3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_first">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_second">
+        <div class="cube blue"></div>
+        <div class="cube red "></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_third">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_second1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_second2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_second3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_third1">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_third2">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+    <div class="cube-wrapper line3_right_third3">
+        <div class="cube blue"></div>
+        <div class="cube red"></div>
+        <div class="cube yellow"></div>
+    </div>
+</div>
+</body>
+</html>
